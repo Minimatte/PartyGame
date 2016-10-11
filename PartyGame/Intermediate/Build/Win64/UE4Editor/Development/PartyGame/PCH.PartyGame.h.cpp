@@ -1,1 +1,1 @@
-#include "D:\GITProjects\PartyGame\PartyGame\Source\PartyGame\PartyGame.h"
+#include "C:\Projects\PartyGame\PartyGame\Source\PartyGame\PartyGame.h"

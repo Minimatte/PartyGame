@@ -13,8 +13,28 @@ PRAGMA_DISABLE_DEPRECATION_WARNINGS
 #endif
 #define PARTYGAME_PartyGameGameMode_generated_h
 
-#define PartyGame_Source_PartyGame_PartyGameGameMode_h_14_RPC_WRAPPERS
-#define PartyGame_Source_PartyGame_PartyGameGameMode_h_14_RPC_WRAPPERS_NO_PURE_DECLS
+#define PartyGame_Source_PartyGame_PartyGameGameMode_h_14_RPC_WRAPPERS \
+ \
+	DECLARE_FUNCTION(execCreatePlayer) \
+	{ \
+		P_FINISH; \
+		P_NATIVE_BEGIN; \
+		this->CreatePlayer(); \
+		P_NATIVE_END; \
+	}
+
+
+#define PartyGame_Source_PartyGame_PartyGameGameMode_h_14_RPC_WRAPPERS_NO_PURE_DECLS \
+ \
+	DECLARE_FUNCTION(execCreatePlayer) \
+	{ \
+		P_FINISH; \
+		P_NATIVE_BEGIN; \
+		this->CreatePlayer(); \
+		P_NATIVE_END; \
+	}
+
+
 #define PartyGame_Source_PartyGame_PartyGameGameMode_h_14_INCLASS_NO_PURE_DECLS \
 	private: \
 	static void StaticRegisterNativesAPartyGameGameMode(); \
