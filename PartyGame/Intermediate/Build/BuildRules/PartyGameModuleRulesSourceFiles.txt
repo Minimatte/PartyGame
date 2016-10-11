@@ -1,3 +1,0 @@
-C:\Projects\PartyGame\PartyGame\Source\PartyGame\PartyGame.Build.cs
-C:\Projects\PartyGame\PartyGame\Source\PartyGame.Target.cs
-C:\Projects\PartyGame\PartyGame\Source\PartyGameEditor.Target.cs
