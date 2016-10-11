@@ -8,3 +8,9 @@
 #ifndef PARTYGAME_PartyGameGameMode_generated_h
 	#include "PartyGameGameMode.h"
 #endif
+#ifndef PARTYGAME_PartyPlayerCharacter_generated_h
+	#include "PartyPlayerCharacter.h"
+#endif
+#ifndef PARTYGAME_PartyPlayerController_generated_h
+	#include "PartyPlayerController.h"
+#endif
