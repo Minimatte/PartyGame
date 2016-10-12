@@ -37,6 +37,8 @@ void ACameraHandler::LerpTowardsAverage()
 		// Same as with the Object Iterator, access the subclass instance with the * or -> operators.
 		APartyPlayerCharacter *Mesh = *ActorItr;
 		averagePosition += ActorItr->GetActorLocation();
+
+		
 	}
 
 	averagePosition = averagePosition / count;
@@ -46,14 +48,28 @@ void ACameraHandler::LerpTowardsAverage()
 
 	// Set the spring arm length
 	
+	float avgLength = 0; 
+	count = 0;
+
+	for (TActorIterator<APartyPlayerCharacter> ActorItr(GetWorld()); ActorItr; ++ActorItr) {
+		for (TActorIterator<APartyPlayerCharacter> OtherActorItr(GetWorld()); OtherActorItr; ++OtherActorItr) {
+			count++;
+			avgLength += (ActorItr->GetActorLocation() - OtherActorItr->GetActorLocation()).Size();
+
+		}
+	}
+	avgLength = avgLength / count;
+
+
 	USpringArmComponent* SAC = FindComponentByClass<USpringArmComponent>();
 	if (SAC)
 	{
 		float targetLength = SpringArmBase  * SpringArmMultiplier;
-		targetLength = FMath::Lerp(SAC->TargetArmLength, targetLength, GetWorld()->GetDeltaSeconds() * lerpSpeed);
+		targetLength = FMath::Lerp(SAC->TargetArmLength, targetLength + avgLength * SpringArmMultiplier, GetWorld()->GetDeltaSeconds() * lerpSpeed);
 		SAC->TargetArmLength = targetLength;
 	}
-
+	
+	
 	
 }
 

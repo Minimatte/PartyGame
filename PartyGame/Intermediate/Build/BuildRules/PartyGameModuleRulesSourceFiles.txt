@@ -1,0 +1,3 @@
+D:\GITProjects\PartyGame\PartyGame\Source\PartyGame\PartyGame.Build.cs
+D:\GITProjects\PartyGame\PartyGame\Source\PartyGame.Target.cs
+D:\GITProjects\PartyGame\PartyGame\Source\PartyGameEditor.Target.cs

@@ -2,7 +2,7 @@
 	"TargetName" : "PartyGameEditor",
 	"Platform" : "Win64",
 	"Configuration" : "Development",
-	"BuildId" : "",
+	"BuildId" : "90f0a77e-2b81-470e-8fd2-ce4cab86e35f",
 	"Version" : 
 	{
 		"MajorVersion" : 4,
@@ -15,15 +15,15 @@
 	"BuildProducts" :
 	[
 		{
-			"Path" : "$(ProjectDir)/Binaries/Win64/UE4Editor-PartyGame.dll",
+			"Path" : "$(ProjectDir)/Binaries/Win64/UE4Editor-PartyGame-3233.dll",
 			"Type" : "DynamicLibrary"
 		},
 		{
-			"Path" : "$(ProjectDir)/Binaries/Win64/UE4Editor-PartyGame.pdb",
+			"Path" : "$(ProjectDir)/Binaries/Win64/UE4Editor-PartyGame-3233.pdb",
 			"Type" : "SymbolFile"
 		},
 		{
-			"Path" : "$(ProjectDir)/Intermediate/Build/Win64/UE4Editor/Development/UE4Editor-PartyGame.lib",
+			"Path" : "$(ProjectDir)/Intermediate/Build/Win64/UE4Editor/Development/UE4Editor-PartyGame-3233.lib",
 			"Type" : "ImportLibrary"
 		}
 	],

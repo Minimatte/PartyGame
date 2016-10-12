@@ -16,6 +16,12 @@ void APartyPlayerCharacter::BeginPlay()
 {
 	Super::BeginPlay();
 
+	AutoPossessPlayer = EAutoReceiveInput::Player1;
+	AutoPossessPlayer = EAutoReceiveInput::Player2;
+	AutoPossessPlayer = EAutoReceiveInput::Player3;
+	AutoPossessPlayer = EAutoReceiveInput::Player4;
+	AutoPossessPlayer = EAutoReceiveInput::Player5;
+	AutoPossessPlayer = EAutoReceiveInput::Player6;
 }
 
 // Called every frame
@@ -30,6 +36,7 @@ void APartyPlayerCharacter::Tick(float DeltaTime)
 void APartyPlayerCharacter::SetupPlayerInputComponent(class UInputComponent* InputComponent)
 {
 	Super::SetupPlayerInputComponent(InputComponent);
+	
 	
 
 }

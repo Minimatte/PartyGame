@@ -1,0 +1,35 @@
+// Fill out your copyright notice in the Description page of Project Settings.
+
+#include "PartyGame.h"
+#include "PartyGameLib.h"
+
+FColor UPartyGameLib::GetRandomColor() {
+
+	int randomColorIndex = FMath::RandRange(0, 6);
+
+	switch (randomColorIndex) {
+	case 0:
+		return FColor::Red;
+		break;
+	case 1:
+		return FColor::Blue;
+		break;
+	case 2:
+		return FColor::Green;
+		break;
+	case 3:
+		return FColor::White;
+		break;
+	case 4:
+		return FColor::Purple;
+		break;
+	case 5:
+		return FColor::Yellow;
+	default:
+		return FColor::Magenta;
+		break;
+	}
+
+	return FColor::Black;
+	
+}

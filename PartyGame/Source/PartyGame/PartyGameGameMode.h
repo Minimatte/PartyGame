@@ -18,11 +18,15 @@ public:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
 
-	static TArray<APartyPlayerController> players;
+	UPROPERTY(EditAnywhere)
+		TArray<APartyPlayerController*> PlayerControllers;
 	// Create a new controller, add it to the list of players.
 
 	UFUNCTION(BlueprintCallable, Category = "Gamecontroller")
-	void CreatePlayer();
+	void CreatePlayer(APartyPlayerController* playercontroller);
 
+	UFUNCTION(BlueprintCallable, BlueprintPure, Category = "GameMode")
+		int GetAmountOfPlayers();
+	
 
 };
