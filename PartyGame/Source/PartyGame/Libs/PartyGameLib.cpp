@@ -3,11 +3,10 @@
 #include "PartyGame.h"
 #include "PartyGameLib.h"
 
-FColor UPartyGameLib::GetRandomColor() {
+FColor UPartyGameLib::GetRandomColor(int id) {
 
-	int randomColorIndex = FMath::RandRange(0, 6);
 
-	switch (randomColorIndex) {
+	switch (id) {
 	case 0:
 		return FColor::Red;
 		break;

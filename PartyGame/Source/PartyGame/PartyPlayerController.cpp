@@ -22,12 +22,6 @@ void APartyPlayerController::MoveRight(float Value) {
 		const FVector Direction = FRotationMatrix(Rotation).GetScaledAxis(EAxis::Y);
 		// add movement in that direction
 
-		if (Value > 0) {
-			Value = 1;
-		}
-		else {
-			Value = -1;
-		}
 		GetPawn()->AddMovementInput(Direction, Value);
 
 		//GEngine->AddOnScreenDebugMessage(-1, 5, FColor::Cyan, TEXT("Value"));
