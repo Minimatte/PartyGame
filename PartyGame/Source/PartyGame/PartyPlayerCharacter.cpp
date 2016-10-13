@@ -16,6 +16,10 @@ void APartyPlayerCharacter::BeginPlay()
 {
 	Super::BeginPlay();
 
+	CurrentHealth = MaxHealth;
+
+	GetController()->GetUniqueID();
+
 	AutoPossessPlayer = EAutoReceiveInput::Player1;
 	AutoPossessPlayer = EAutoReceiveInput::Player2;
 	AutoPossessPlayer = EAutoReceiveInput::Player3;
@@ -36,12 +40,15 @@ void APartyPlayerCharacter::Tick(float DeltaTime)
 
 }
 
-// Called to bind functionality to input
-void APartyPlayerCharacter::SetupPlayerInputComponent(class UInputComponent* InputComponent)
-{
-	Super::SetupPlayerInputComponent(InputComponent);
-	
-	
+void APartyPlayerCharacter::TakeDamage(float damage) {
+	CurrentHealth -= damage;
 
+	if (CurrentHealth <= 0) {
+		GetController()->UnPossess();
+		Kill();
+	}
 }
 
+void APartyPlayerCharacter::Kill() {
+	Destroy();
+}

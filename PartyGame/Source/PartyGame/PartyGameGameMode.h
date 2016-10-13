@@ -22,11 +22,18 @@ public:
 		TArray<APartyPlayerController*> PlayerControllers;
 	// Create a new controller, add it to the list of players.
 
+	UFUNCTION(BlueprintCallable, Category = "GameMode")
+		void CheckLastManStanding();
+
+	UFUNCTION(BlueprintCallable, Category = "GameMode")
+		void NextMap();
+
 	UFUNCTION(BlueprintCallable, Category = "Gamecontroller")
 	void CreatePlayer(APartyPlayerController* playercontroller);
 
 	UFUNCTION(BlueprintCallable, BlueprintPure, Category = "GameMode")
 		int GetAmountOfPlayers();
-	
+private:
+	bool GameOver = false;
 
 };

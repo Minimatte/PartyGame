@@ -19,12 +19,20 @@ public:
 	// Called every frame
 	virtual void Tick(float DeltaSeconds) override;
 
-	// Called to bind functionality to input
-	virtual void SetupPlayerInputComponent(class UInputComponent* InputComponent) override;
+	UFUNCTION(BlueprintCallable, Category = "Party Player")
+		virtual void TakeDamage(float damage);
 
+	UFUNCTION(BlueprintCallable, Category = "Party Player")
+		virtual void Kill();
 	UPROPERTY(EditAnywhere)
 		bool CanWallJump;
 
 	UPROPERTY(EditAnywhere)
 		bool CanMove;
+
+	UPROPERTY(EditAnywhere)
+		float MaxHealth;
+
+	UPROPERTY(EditAnywhere)
+		float CurrentHealth;
 };

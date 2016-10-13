@@ -15,10 +15,10 @@ void APartyPlayerController::SetupInputComponent() {
 
 void APartyPlayerController::MoveRight(float Value) {
 	const APartyPlayerCharacter* ControlledCharacter = Cast<APartyPlayerCharacter>(GetPawn());
-	if (!ControlledCharacter->CanMove)
-		return;
-
 	if (ControlledCharacter != NULL && Value != 0.0f) {
+
+		if (!ControlledCharacter->CanMove)
+			return;
 		// find out which way is right
 		const FRotator Rotation = GetControlRotation();
 		const FVector Direction = FRotationMatrix(Rotation).GetScaledAxis(EAxis::Y);
@@ -34,13 +34,13 @@ void APartyPlayerController::MoveRight(float Value) {
 void APartyPlayerController::Tick(float DeltaTime) {
 	Super::Tick(DeltaTime);
 
-	
-	
+
+
 }
 
 void APartyPlayerController::PlayerJump() {
 	APartyPlayerCharacter* ControlledCharacter = Cast<APartyPlayerCharacter>(GetPawn());
-	
+
 
 	if (ControlledCharacter != NULL) {
 		GetCharacter()->Jump();
@@ -61,9 +61,10 @@ void APartyPlayerController::PlayerJump() {
 
 			if (resultRight.IsValidBlockingHit()) {
 				direction = 1;
-			} else if (resultLeft.IsValidBlockingHit()) {
+			}
+			else if (resultLeft.IsValidBlockingHit()) {
 				direction = -1;
-			} 
+			}
 
 			if (direction != 0) {
 				FVector newVelocity = -GetCharacter()->GetActorRightVector() * 500 * direction + GetCharacter()->GetActorUpVector() * 500;
@@ -71,8 +72,8 @@ void APartyPlayerController::PlayerJump() {
 				ControlledCharacter->CanMove = false;
 			}
 
-		} 
-			
-		
+		}
+
+
 	}
 }

@@ -1,10 +1,10 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 
 #include "PartyGame.h"
+#include "PartyGameGameMode.h"
 #include "PartyGameLib.h"
 
-FColor UPartyGameLib::GetRandomColor(int id) {
-
+FColor UPartyGameLib::GetPlayerColor(int id) {
 
 	switch (id) {
 	case 0:

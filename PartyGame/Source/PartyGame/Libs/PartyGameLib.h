@@ -3,6 +3,7 @@
 #pragma once
 
 #include "Kismet/BlueprintFunctionLibrary.h"
+#include "PartyPlayerCharacter.h"
 #include "PartyGameLib.generated.h"
 
 /**
@@ -14,6 +15,7 @@ class PARTYGAME_API UPartyGameLib : public UBlueprintFunctionLibrary {
 
 public:
 		UFUNCTION(BlueprintCallable, Category = "Colors")
-		static FColor GetRandomColor(int id);
+		static FColor GetPlayerColor(int id);
 	
+		
 };
