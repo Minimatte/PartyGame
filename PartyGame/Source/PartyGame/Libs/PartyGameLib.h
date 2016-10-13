@@ -15,5 +15,5 @@ class PARTYGAME_API UPartyGameLib : public UBlueprintFunctionLibrary {
 public:
 		UFUNCTION(BlueprintCallable, Category = "Colors")
 		static FColor GetRandomColor(int id);
-
+	
 };

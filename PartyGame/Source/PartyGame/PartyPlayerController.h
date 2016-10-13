@@ -15,6 +15,8 @@ class PARTYGAME_API APartyPlayerController : public APlayerController
 
 public:
 
+	// Called every frame
+	virtual void Tick(float DeltaSeconds) override;
 
 	void SetupInputComponent();
 

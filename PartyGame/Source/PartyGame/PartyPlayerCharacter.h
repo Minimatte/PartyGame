@@ -22,5 +22,9 @@ public:
 	// Called to bind functionality to input
 	virtual void SetupPlayerInputComponent(class UInputComponent* InputComponent) override;
 
+	UPROPERTY(EditAnywhere)
+		bool CanWallJump;
 
+	UPROPERTY(EditAnywhere)
+		bool CanMove;
 };

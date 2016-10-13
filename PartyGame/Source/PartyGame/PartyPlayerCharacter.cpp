@@ -29,6 +29,10 @@ void APartyPlayerCharacter::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
 
+	if (!CanMove && GetMovementComponent()->IsMovingOnGround()) {
+		CanMove = true;
+		
+	}
 
 }
 

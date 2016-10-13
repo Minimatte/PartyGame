@@ -17,13 +17,13 @@ FColor UPartyGameLib::GetRandomColor(int id) {
 		return FColor::Green;
 		break;
 	case 3:
-		return FColor::White;
+		return FColor::Yellow; 
 		break;
 	case 4:
 		return FColor::Purple;
 		break;
 	case 5:
-		return FColor::Yellow;
+		return FColor::White;
 	default:
 		return FColor::Magenta;
 		break;
@@ -32,3 +32,4 @@ FColor UPartyGameLib::GetRandomColor(int id) {
 	return FColor::Black;
 	
 }
+
