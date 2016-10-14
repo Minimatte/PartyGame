@@ -23,7 +23,11 @@ public:
 		virtual void TakeDamage(float damage);
 
 	UFUNCTION(BlueprintCallable, Category = "Party Player")
+		virtual void Heal(float health);
+
+	UFUNCTION(BlueprintCallable, Category = "Party Player")
 		virtual void Kill();
+
 	UPROPERTY(EditAnywhere)
 		bool CanWallJump;
 
@@ -35,4 +39,10 @@ public:
 
 	UPROPERTY(EditAnywhere)
 		float CurrentHealth;
+
+	UFUNCTION(BlueprintCallable, BlueprintPure, Category = "Party Player")
+		virtual float GetCurrentHealth();
+
+	UFUNCTION(BlueprintCallable, BlueprintPure, Category = "Party Player")
+		virtual float GetMaxHealth();
 };

@@ -18,14 +18,11 @@ void APartyPlayerCharacter::BeginPlay()
 
 	CurrentHealth = MaxHealth;
 
-	GetController()->GetUniqueID();
-
 	AutoPossessPlayer = EAutoReceiveInput::Player1;
 	AutoPossessPlayer = EAutoReceiveInput::Player2;
 	AutoPossessPlayer = EAutoReceiveInput::Player3;
 	AutoPossessPlayer = EAutoReceiveInput::Player4;
-	AutoPossessPlayer = EAutoReceiveInput::Player5;
-	AutoPossessPlayer = EAutoReceiveInput::Player6;
+
 }
 
 // Called every frame
@@ -49,6 +46,22 @@ void APartyPlayerCharacter::TakeDamage(float damage) {
 	}
 }
 
+void APartyPlayerCharacter::Heal(float health) {
+	CurrentHealth += health;
+
+	if (CurrentHealth > MaxHealth) {
+		CurrentHealth = MaxHealth;
+	}
+}
+
 void APartyPlayerCharacter::Kill() {
 	Destroy();
+}
+
+float APartyPlayerCharacter::GetCurrentHealth() {
+	return CurrentHealth;
+}
+
+float APartyPlayerCharacter::GetMaxHealth() {
+	return MaxHealth;
 }
