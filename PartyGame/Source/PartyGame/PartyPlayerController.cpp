@@ -34,8 +34,6 @@ void APartyPlayerController::MoveRight(float Value) {
 void APartyPlayerController::Tick(float DeltaTime) {
 	Super::Tick(DeltaTime);
 
-
-
 }
 
 void APartyPlayerController::PlayerJump() {
@@ -58,12 +56,17 @@ void APartyPlayerController::PlayerJump() {
 			GetWorld()->LineTraceSingleByChannel(resultLeft, start, leftEnd, ECollisionChannel::ECC_Visibility, CollisionParams);
 
 			float direction = 0;
-
+			float wallJumpDirection = -2;
+			float axisDirection = InputComponent->GetAxisValue("Right");
 			if (resultRight.IsValidBlockingHit()) {
 				direction = 1;
+				wallJumpDirection = -1;
+
 			}
 			else if (resultLeft.IsValidBlockingHit()) {
 				direction = -1;
+				wallJumpDirection = 1;
+				
 			}
 
 			if (direction != 0) {

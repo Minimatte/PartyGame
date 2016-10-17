@@ -4,6 +4,16 @@
 #include "PartyPlayerCharacter.h"
 #include "PartyGameGameMode.h"
 
+
+TArray<AActor*> APartyGameGameMode::GetAllSpawnLocations()
+{
+	TArray<AActor*> FoundActors;
+	UGameplayStatics::GetAllActorsOfClass(GetWorld(), APlayerStart::StaticClass(), FoundActors);
+
+
+	return FoundActors;
+}
+
 void APartyGameGameMode::CheckLastManStanding()
 {
 	if (GameOver)

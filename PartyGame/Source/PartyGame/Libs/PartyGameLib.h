@@ -14,8 +14,8 @@ class PARTYGAME_API UPartyGameLib : public UBlueprintFunctionLibrary {
 	GENERATED_BODY()
 
 public:
-		UFUNCTION(BlueprintCallable, Category = "Colors")
+		UFUNCTION(BlueprintPure, Category = "Colors")
 		static FColor GetPlayerColor(int id);
 	
-		
+
 };

@@ -33,6 +33,10 @@ public:
 
 	UFUNCTION(BlueprintCallable, BlueprintPure, Category = "GameMode")
 		int GetAmountOfPlayers();
+
+	UFUNCTION(BlueprintCallable, Category = "GameMode")
+		TArray<AActor*> GetAllSpawnLocations();
+
 private:
 	bool GameOver = false;
 
