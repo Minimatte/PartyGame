@@ -1,6 +1,7 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 
 #include "PartyGame.h"
+#include "Libs/PartyGameLib.h"
 #include "PartyPlayerCharacter.h"
 #include "PartyPlayerController.h"
 // Sets default values
@@ -23,6 +24,9 @@ void APartyPlayerCharacter::BeginPlay()
 	AutoPossessPlayer = EAutoReceiveInput::Player3;
 	AutoPossessPlayer = EAutoReceiveInput::Player4;
 
+	
+	
+	
 }
 
 // Called every frame

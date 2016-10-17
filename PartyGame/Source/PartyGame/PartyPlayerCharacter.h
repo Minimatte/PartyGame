@@ -10,6 +10,12 @@ class PARTYGAME_API APartyPlayerCharacter : public ACharacter {
 	GENERATED_BODY()
 
 public:
+	UPROPERTY(EditAnywhere)
+		UMaterialInterface* PlayerMeshMaterial;
+
+	UPROPERTY(EditAnywhere)
+		UActorComponent* PlayerMesh;
+
 	// Sets default values for this character's properties
 	APartyPlayerCharacter();
 
