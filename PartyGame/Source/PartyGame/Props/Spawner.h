@@ -35,4 +35,10 @@ public:
 
 	UFUNCTION(BlueprintCallable, Category = "Spawner")
 		void SpawnActor();
+
+private:
+	AActor* DroppedItem;
+
+	void ResetSpawnOnce();
+	bool HasSpawned = false;
 };

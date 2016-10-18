@@ -9,7 +9,10 @@ void APartyPlayerController::SetupInputComponent() {
 	Super::SetupInputComponent();
 
 	InputComponent->BindAxis("Right", this, &APartyPlayerController::MoveRight);
+	InputComponent->BindAxis("RightStickX");
+	InputComponent->BindAxis("RightStickY");
 	InputComponent->BindAction("Jump", IE_Pressed, this, &APartyPlayerController::PlayerJump);
+	InputComponent->BindAction("Debug", IE_Pressed, this, &APartyPlayerController::Boost);
 }
 
 
@@ -26,8 +29,18 @@ void APartyPlayerController::MoveRight(float Value) {
 
 		GetPawn()->AddMovementInput(Direction, Value);
 
-		//GEngine->AddOnScreenDebugMessage(-1, 5, FColor::Cyan, TEXT("Value"));
 	}
+}
+
+void APartyPlayerController::Boost() {
+	float power = 600;
+	float xMult = InputComponent->GetAxisValue("RightStickX");
+	float yMult = InputComponent->GetAxisValue("RightStickY");
+
+	FVector dir = FVector(0, xMult, yMult);
+
+	GetCharacter()->LaunchCharacter(dir * power, false, false);
+
 }
 
 // Called every frame
@@ -38,7 +51,6 @@ void APartyPlayerController::Tick(float DeltaTime) {
 
 void APartyPlayerController::PlayerJump() {
 	APartyPlayerCharacter* ControlledCharacter = Cast<APartyPlayerCharacter>(GetPawn());
-
 
 	if (ControlledCharacter != NULL) {
 		GetCharacter()->Jump();
@@ -58,15 +70,14 @@ void APartyPlayerController::PlayerJump() {
 			float direction = 0;
 			float wallJumpDirection = -2;
 			float axisDirection = InputComponent->GetAxisValue("Right");
+
 			if (resultRight.IsValidBlockingHit()) {
 				direction = 1;
 				wallJumpDirection = -1;
 
-			}
-			else if (resultLeft.IsValidBlockingHit()) {
+			} else if (resultLeft.IsValidBlockingHit()) {
 				direction = -1;
 				wallJumpDirection = 1;
-				
 			}
 
 			if (direction != 0) {
@@ -76,7 +87,5 @@ void APartyPlayerController::PlayerJump() {
 			}
 
 		}
-
-
 	}
 }

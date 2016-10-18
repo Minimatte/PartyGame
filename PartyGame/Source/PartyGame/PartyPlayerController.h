@@ -15,6 +15,10 @@ class PARTYGAME_API APartyPlayerController : public APlayerController
 
 public:
 
+
+	bool Boosting = false;
+	FVector BoostingLocation;
+
 	// Called every frame
 	virtual void Tick(float DeltaSeconds) override;
 
@@ -25,4 +29,7 @@ public:
 
 	UFUNCTION()
 		void PlayerJump();
+
+	UFUNCTION()
+		void Boost();
 };
