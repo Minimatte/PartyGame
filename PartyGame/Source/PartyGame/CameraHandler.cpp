@@ -73,3 +73,8 @@ void ACameraHandler::LerpTowardsAverage()
 	
 }
 
+void ACameraHandler::LerpTowardsTarget(AActor* TargetActor) {
+	FVector pos = FMath::Lerp(GetActorLocation(), TargetActor->GetActorLocation(), GetWorld()->GetDeltaSeconds()*lerpSpeed);
+	SetActorLocation(pos);
+}
+

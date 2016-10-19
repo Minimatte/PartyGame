@@ -32,4 +32,7 @@ public:
 
 	UFUNCTION()
 		void Boost();
+
+	UFUNCTION(BlueprintCallable, Category = "PlayerCharacter")
+		void DisableCharacterMovement();
 };

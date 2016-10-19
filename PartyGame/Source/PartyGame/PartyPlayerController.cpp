@@ -89,3 +89,8 @@ void APartyPlayerController::PlayerJump() {
 		}
 	}
 }
+
+void APartyPlayerController::DisableCharacterMovement() {
+	APartyPlayerCharacter* ControlledCharacter = Cast<APartyPlayerCharacter>(GetPawn());
+	ControlledCharacter->CanMove = false;
+}

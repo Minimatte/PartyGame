@@ -28,4 +28,7 @@ public:
 	UFUNCTION(BlueprintCallable, Category = "CameraHandler")
 		void LerpTowardsAverage();
 
+	UFUNCTION(BlueprintCallable, Category = "CameraHandler")
+		void LerpTowardsTarget(AActor* TargetActor);
+
 };
