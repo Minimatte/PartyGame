@@ -7,6 +7,9 @@
 
 void APartyPlayerController::SetupInputComponent() {
 	Super::SetupInputComponent();
+	
+	InputComponent->BindAxis("Up", this, &APartyPlayerController::MoveUp);
+	
 
 	InputComponent->BindAxis("Right", this, &APartyPlayerController::MoveRight);
 	InputComponent->BindAxis("RightStickX");
@@ -15,6 +18,26 @@ void APartyPlayerController::SetupInputComponent() {
 	InputComponent->BindAction("Debug", IE_Pressed, this, &APartyPlayerController::Boost);
 }
 
+void APartyPlayerController::MoveUp(float Value) {
+	const APartyPlayerCharacter* ControlledCharacter = Cast<APartyPlayerCharacter>(GetPawn());
+
+
+	if (ControlledCharacter != NULL && Value != 0.0f) {
+
+	if (!ControlledCharacter->CanMoveXAxis)
+		return;
+		if (!ControlledCharacter->CanMove)
+			return;
+		// find out which way is right
+		const FRotator Rotation = GetControlRotation();
+		const FVector Direction = FRotationMatrix(Rotation).GetScaledAxis(EAxis::X);
+		// add movement in that direction
+
+		GEngine->AddOnScreenDebugMessage(-1, 5, FColor::White,Direction.ToString());
+		GetPawn()->AddMovementInput(Direction, Value);
+
+	}
+}
 
 void APartyPlayerController::MoveRight(float Value) {
 	const APartyPlayerCharacter* ControlledCharacter = Cast<APartyPlayerCharacter>(GetPawn());

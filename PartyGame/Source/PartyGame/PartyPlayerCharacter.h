@@ -11,6 +11,8 @@ class PARTYGAME_API APartyPlayerCharacter : public ACharacter {
 
 public:
 
+	UPROPERTY(EditAnywhere)
+		bool CanMoveXAxis = false;
 
 	UPROPERTY(EditAnywhere)
 		UMaterialInterface* PlayerMeshMaterial;

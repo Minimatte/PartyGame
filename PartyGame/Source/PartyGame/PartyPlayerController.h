@@ -28,6 +28,9 @@ public:
 		void MoveRight(float Value);
 
 	UFUNCTION()
+		void MoveUp(float Value);
+
+	UFUNCTION()
 		void PlayerJump();
 
 	UFUNCTION()
