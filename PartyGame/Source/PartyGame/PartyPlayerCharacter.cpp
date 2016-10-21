@@ -69,3 +69,11 @@ float APartyPlayerCharacter::GetCurrentHealth() {
 float APartyPlayerCharacter::GetMaxHealth() {
 	return MaxHealth;
 }
+
+void APartyPlayerCharacter::DisableMovement() {
+	MovementEnabled = false;
+}
+
+void APartyPlayerCharacter::EnableMovement() {
+	MovementEnabled = true;
+}

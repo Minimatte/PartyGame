@@ -39,6 +39,9 @@ public:
 		virtual void Kill();
 
 	UPROPERTY(EditAnywhere)
+		bool CanPawnJump = true;
+	
+	UPROPERTY(EditAnywhere)
 		bool CanWallJump;
 
 	UPROPERTY(EditAnywhere)
@@ -55,4 +58,13 @@ public:
 
 	UFUNCTION(BlueprintCallable, BlueprintPure, Category = "Party Player")
 		virtual float GetMaxHealth();
+
+	UFUNCTION(BlueprintCallable, Category = "Party Player")
+		void DisableMovement();
+
+	UFUNCTION(BlueprintCallable, Category = "Party Player")
+		void EnableMovement();
+
+	UPROPERTY(EditAnywhere)
+		bool MovementEnabled = true;
 };

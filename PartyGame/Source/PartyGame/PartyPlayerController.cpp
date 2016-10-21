@@ -24,17 +24,21 @@ void APartyPlayerController::MoveUp(float Value) {
 
 	if (ControlledCharacter != NULL && Value != 0.0f) {
 
-	if (!ControlledCharacter->CanMoveXAxis)
-		return;
+		if (!ControlledCharacter->CanMoveXAxis)
+			return;
+
 		if (!ControlledCharacter->CanMove)
 			return;
+
+		if (!ControlledCharacter->MovementEnabled)
+			return;
+
 		// find out which way is right
 		const FRotator Rotation = GetControlRotation();
 		const FVector Direction = FRotationMatrix(Rotation).GetScaledAxis(EAxis::X);
 		// add movement in that direction
-
-		GEngine->AddOnScreenDebugMessage(-1, 5, FColor::White,Direction.ToString());
-		GetPawn()->AddMovementInput(Direction, Value);
+		GetCharacter()->AddMovementInput(Direction, Value);
+		
 
 	}
 }
@@ -42,7 +46,8 @@ void APartyPlayerController::MoveUp(float Value) {
 void APartyPlayerController::MoveRight(float Value) {
 	const APartyPlayerCharacter* ControlledCharacter = Cast<APartyPlayerCharacter>(GetPawn());
 	if (ControlledCharacter != NULL && Value != 0.0f) {
-
+		if (!ControlledCharacter->MovementEnabled)
+			return;
 		if (!ControlledCharacter->CanMove)
 			return;
 		// find out which way is right
@@ -76,6 +81,12 @@ void APartyPlayerController::PlayerJump() {
 	APartyPlayerCharacter* ControlledCharacter = Cast<APartyPlayerCharacter>(GetPawn());
 
 	if (ControlledCharacter != NULL) {
+		if (!ControlledCharacter->CanPawnJump)
+			return;
+
+		if (!ControlledCharacter->MovementEnabled)
+			return;
+
 		GetCharacter()->Jump();
 		if (!GetCharacter()->GetMovementComponent()->IsMovingOnGround() && ControlledCharacter->CanWallJump) {
 			FHitResult resultRight;

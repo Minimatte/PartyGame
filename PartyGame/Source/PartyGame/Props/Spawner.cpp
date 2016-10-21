@@ -37,7 +37,6 @@ void ASpawner::SpawnActor() {
 	
 	if (::IsValid(DroppedItem))
 		return;
-	GEngine->AddOnScreenDebugMessage(-1, 2, FColor::White,"Spawned");
 
 	FActorSpawnParameters SpawnParams;
 	SpawnParams.Instigator = Instigator;

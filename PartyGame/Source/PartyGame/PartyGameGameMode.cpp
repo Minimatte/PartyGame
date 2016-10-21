@@ -24,8 +24,8 @@ void APartyGameGameMode::CheckLastManStanding()
 
 	if (FoundActors.Num() == 1) {
 		// One player left
-		GEngine->AddOnScreenDebugMessage(-1, 5, FColor::White, "ONE PLAYER LEFT");
-//		int winnerID = FoundActors[0]->GetInstigatorController()->GetUniqueID;
+		//GEngine->AddOnScreenDebugMessage(-1, 5, FColor::White, "ONE PLAYER LEFT");
+		//int winnerID = FoundActors[0]->GetInstigatorController()->GetUniqueID;
 		GameOver = true;
 		UGameplayStatics::SetGlobalTimeDilation(GetWorld(), 0.1f);
 		FTimerHandle UnusedHandle;
@@ -33,7 +33,7 @@ void APartyGameGameMode::CheckLastManStanding()
 			UnusedHandle, this, &APartyGameGameMode::NextMap, 0.3f, false);
 	}
 	else if (FoundActors.Num() == 0) {
-		GEngine->AddOnScreenDebugMessage(-1, 5, FColor::White, "DRAW");
+		//GEngine->AddOnScreenDebugMessage(-1, 5, FColor::White, "DRAW");
 		GameOver = true;
 		UGameplayStatics::SetGlobalTimeDilation(GetWorld(), 0.1f);
 		FTimerHandle UnusedHandle;
