@@ -92,3 +92,7 @@ bool UPartyGameLib::IsOnScreen(AActor* Actor, float TimeThreashold) {
 
 }
 
+void UPartyGameLib::AddScore(int PlayerId)
+{
+}
+

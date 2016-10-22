@@ -32,4 +32,6 @@ public:
 		UFUNCTION(BlueprintPure, Category = "GameMode")
 			static bool IsOnScreen(AActor* Actor, float TimeThreashold);
 
+		UFUNCTION(BlueprintCallable, Category = "Score")
+			static void AddScore(int PlayerId);
 };
