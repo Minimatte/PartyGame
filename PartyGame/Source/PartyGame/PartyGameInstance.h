@@ -5,23 +5,28 @@
 #include "Engine/GameInstance.h"
 #include "PartyGameInstance.generated.h"
 
-USTRUCT()
+USTRUCT(BlueprintType)
 struct FScore
 {
-	GENERATED_BODY()
+	GENERATED_USTRUCT_BODY()
 
-	UPROPERTY()
-		APlayerController* Player;
+	UPROPERTY(EditAnywhere)
+		int32 Player;
 
-	UPROPERTY()
-		int Score;
+	UPROPERTY(EditAnywhere)
+		int32 Score;
 
-	void SetPlayer(APlayerController* p) {
+	void SetPlayer(int p) {
 		Player = p;
 	}
 
 	FScore() {
 		Score = 0;
+	}
+
+	FScore(int p, int s) {
+		Player = p;
+		Score = s;
 	}
 
 };
@@ -48,4 +53,7 @@ public:
 
 	UFUNCTION(BlueprintCallable, BlueprintPure, Category = "Party Game Instance")
 		TArray<FScore> GetScoreList();
+
+	UFUNCTION(BlueprintCallable, BlueprintPure, Category = "Party Game Instance")
+		int GetScore(int PlayerID);
 };

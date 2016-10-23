@@ -3,7 +3,7 @@
 #include "PartyGame.h"
 #include "PartyPlayerCharacter.h"
 #include "PartyGameGameMode.h"
-
+#include "PartyGameInstance.h"
 
 TArray<AActor*> APartyGameGameMode::GetAllSpawnLocations()
 {
@@ -12,6 +12,25 @@ TArray<AActor*> APartyGameGameMode::GetAllSpawnLocations()
 
 
 	return FoundActors;
+}
+
+int APartyGameGameMode::GiveScore(int PlayerId)
+{
+
+	UPartyGameInstance* ginstance = Cast<UPartyGameInstance>(UGameplayStatics::GetGameInstance(GetWorld()));
+	
+
+	for (int i = 0; i < ginstance->Score.Num(); i++) {
+
+		if (ginstance->Score[i].Player == PlayerId) {
+			FScore newscore = FScore(ginstance->Score[i].Player, ginstance->Score[i].Score + 1);
+
+			ginstance->Score[i] = newscore;
+			GEngine->AddOnScreenDebugMessage(-1, 5, FColor::White, "Added score");
+			return newscore.Score;
+		}
+	}
+	return -1;
 }
 
 void APartyGameGameMode::CheckLastManStanding()
@@ -29,23 +48,25 @@ void APartyGameGameMode::CheckLastManStanding()
 		GameOver = true;
 		UGameplayStatics::SetGlobalTimeDilation(GetWorld(), 0.1f);
 		FTimerHandle UnusedHandle;
-		GetWorldTimerManager().SetTimer(
-			UnusedHandle, this, &APartyGameGameMode::NextMap, 0.3f, false);
+		GetWorldTimerManager().SetTimer(UnusedHandle, this, &APartyGameGameMode::NextMap, 0.3f, false);
+		
+		int playerID = UGameplayStatics::GetPlayerControllerID(Cast<APlayerController>(FoundActors[0]->GetInstigatorController()));
+		int newscore = GiveScore(playerID);
+		GEngine->AddOnScreenDebugMessage(-1, 5, FColor::White, FString::SanitizeFloat(newscore));
 	}
 	else if (FoundActors.Num() == 0) {
 		//GEngine->AddOnScreenDebugMessage(-1, 5, FColor::White, "DRAW");
 		GameOver = true;
 		UGameplayStatics::SetGlobalTimeDilation(GetWorld(), 0.1f);
 		FTimerHandle UnusedHandle;
-		GetWorldTimerManager().SetTimer(
-			UnusedHandle, this, &APartyGameGameMode::NextMap, 0.3f, false);
+		GetWorldTimerManager().SetTimer(UnusedHandle, this, &APartyGameGameMode::NextMap, 0.3f, false);
 	}
 
 }
 
 void APartyGameGameMode::NextMap()
 {
-	UGameplayStatics::OpenLevel(GetWorld(), "StartLevel");
+	UGameplayStatics::OpenLevel(GetWorld(), "Level_FallingBalls");
 }
 
 void APartyGameGameMode::CreatePlayer(APartyPlayerController* playercontroller)

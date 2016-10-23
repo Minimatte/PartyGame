@@ -37,6 +37,8 @@ public:
 	UFUNCTION(BlueprintCallable, Category = "GameMode")
 		TArray<AActor*> GetAllSpawnLocations();
 
+	UFUNCTION(BlueprintCallable, Category = "GameMode")
+		int GiveScore(int PlayerId);
 private:
 	bool GameOver = false;
 
