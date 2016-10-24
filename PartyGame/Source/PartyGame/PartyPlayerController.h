@@ -38,4 +38,11 @@ public:
 
 	UFUNCTION(BlueprintCallable, Category = "PlayerCharacter")
 		void DisableCharacterMovement();
+
+	UFUNCTION(BlueprintCallable, Category = "PlayerCharacter")
+		void Push();
+
+	UFUNCTION(BlueprintCallable, Category = "PlayerCharacter")
+		void EnableCharacterMovement();
+
 };

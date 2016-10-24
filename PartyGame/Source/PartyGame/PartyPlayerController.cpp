@@ -7,15 +7,16 @@
 
 void APartyPlayerController::SetupInputComponent() {
 	Super::SetupInputComponent();
-	
+
 	InputComponent->BindAxis("Up", this, &APartyPlayerController::MoveUp);
-	
+
 
 	InputComponent->BindAxis("Right", this, &APartyPlayerController::MoveRight);
 	InputComponent->BindAxis("RightStickX");
 	InputComponent->BindAxis("RightStickY");
 	InputComponent->BindAction("Jump", IE_Pressed, this, &APartyPlayerController::PlayerJump);
 	InputComponent->BindAction("Debug", IE_Pressed, this, &APartyPlayerController::Boost);
+	InputComponent->BindAction("Push", IE_Pressed, this, &APartyPlayerController::Push);
 }
 
 void APartyPlayerController::MoveUp(float Value) {
@@ -38,7 +39,7 @@ void APartyPlayerController::MoveUp(float Value) {
 		const FVector Direction = FRotationMatrix(Rotation).GetScaledAxis(EAxis::X);
 		// add movement in that direction
 		GetCharacter()->AddMovementInput(Direction, Value);
-		
+
 
 	}
 }
@@ -109,7 +110,8 @@ void APartyPlayerController::PlayerJump() {
 				direction = 1;
 				wallJumpDirection = -1;
 
-			} else if (resultLeft.IsValidBlockingHit()) {
+			}
+			else if (resultLeft.IsValidBlockingHit()) {
 				direction = -1;
 				wallJumpDirection = 1;
 			}
@@ -127,4 +129,50 @@ void APartyPlayerController::PlayerJump() {
 void APartyPlayerController::DisableCharacterMovement() {
 	APartyPlayerCharacter* ControlledCharacter = Cast<APartyPlayerCharacter>(GetPawn());
 	ControlledCharacter->CanMove = false;
+}
+
+void APartyPlayerController::EnableCharacterMovement() {
+	APartyPlayerCharacter* ControlledCharacter = Cast<APartyPlayerCharacter>(GetPawn());
+	if (::IsValid(ControlledCharacter))
+		ControlledCharacter->CanMove = true;
+}
+
+void APartyPlayerController::Push()
+{
+	APartyPlayerCharacter* ControlledCharacter = Cast<APartyPlayerCharacter>(GetPawn());
+
+
+	if (::IsValid(ControlledCharacter) && ControlledCharacter->CanMove) {
+
+		TArray<FHitResult> hits;
+		FVector start = ControlledCharacter->GetActorLocation();
+		FVector end = start + FVector(0, 0, 1);
+
+		FCollisionQueryParams TraceParams(FName(TEXT("Trace")), true, ControlledCharacter);
+
+		TraceParams.bTraceComplex = true;
+		TraceParams.bReturnPhysicalMaterial = false;
+
+		TraceParams.AddIgnoredActor(ControlledCharacter);
+
+		GetWorld()->SweepMultiByChannel(hits, start, end, FQuat(), ECollisionChannel::ECC_WorldDynamic, FCollisionShape::MakeSphere(150), TraceParams);
+		for (int i = 0; i < hits.Num(); i++) {
+
+
+			APartyPlayerCharacter* hit = Cast<APartyPlayerCharacter>(hits[i].GetActor());
+			if (::IsValid(hit)) {
+
+				FVector Direction = (hit->GetActorLocation() - ControlledCharacter->GetActorLocation());
+				Direction.Normalize();
+
+				Direction *= 1000;
+
+				hit->LaunchCharacter(Direction, true, true);
+				DisableCharacterMovement();
+
+				FTimerHandle handler;
+				GetWorldTimerManager().SetTimer(handler, this, &APartyPlayerController::EnableCharacterMovement, 0.2, false);
+			}
+		}
+	}
 }
