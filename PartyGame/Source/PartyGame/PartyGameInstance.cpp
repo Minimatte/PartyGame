@@ -7,9 +7,14 @@ bool UPartyGameInstance::AddPlayer(int PlayerID)
 {
 	APlayerController* controller = UGameplayStatics::GetPlayerController(GWorld->GetLevel(0), PlayerID);
 
+	FPartyPlayer player;
+	
+	player.PlayerID = PlayerID;
+	player.Score = 0;
 
-	if (Players.Contains(controller)) {
-		Players.Remove(controller);
+
+	if (Players.Contains(player)) {
+		Players.Remove(player);
 
 		//for (int i = 0; i < Score.Num(); i++) {
 		//	if (Score[i].Player == PlayerID) {
@@ -21,33 +26,16 @@ bool UPartyGameInstance::AddPlayer(int PlayerID)
 		return false;
 	}
 	else {
-		FScore s = FScore(PlayerID, 0);
-		Players.Add(controller);
-		Score.Add(s);
+		Players.Add(player);
 		return true;
 	}
 
 	//UGameplayStatics::GetGameMode(GWorld->GetLevel(0))
 }
 
-TArray<APlayerController*> UPartyGameInstance::GetPlayers()
+TArray<FPartyPlayer> UPartyGameInstance::GetPlayers()
 {
 	return Players;
 }
 
-TArray<FScore> UPartyGameInstance::GetScoreList()
-{
-	return Score;
-}
 
-int UPartyGameInstance::GetScore(int PlayerID)
-{
-
-	for (int i = 0; i < Score.Num(); i++) {
-		if (Score[i].Player == PlayerID) {
-			return Score[i].Score;
-		}
-	}
-
-	return 0;
-}

@@ -30,13 +30,13 @@ public:
 	virtual void Tick(float DeltaSeconds) override;
 
 	UFUNCTION(BlueprintCallable, Category = "Party Player")
-		virtual void TakeDamage(float damage);
+		void TakeDamage(float damage);
 
 	UFUNCTION(BlueprintCallable, Category = "Party Player")
-		virtual void Heal(float health);
+		void Heal(float health);
 
 	UFUNCTION(BlueprintCallable, Category = "Party Player")
-		virtual void Kill();
+		void Kill();
 
 	UPROPERTY(EditAnywhere)
 		bool CanPawnJump = true;

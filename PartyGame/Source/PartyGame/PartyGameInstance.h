@@ -6,30 +6,35 @@
 #include "PartyGameInstance.generated.h"
 
 USTRUCT(BlueprintType)
-struct FScore
+struct FPartyPlayer
 {
 	GENERATED_USTRUCT_BODY()
 
 	UPROPERTY(EditAnywhere)
-		int32 Player;
+		int32 PlayerID;
 
 	UPROPERTY(EditAnywhere)
 		int32 Score;
 
 	void SetPlayer(int p) {
-		Player = p;
+		PlayerID = p;
 	}
 
-	FScore() {
+	FPartyPlayer() {
 		Score = 0;
 	}
 
-	FScore(int p, int s) {
-		Player = p;
+	FPartyPlayer(int p, int s) {
+		PlayerID = p;
 		Score = s;
 	}
 
+	friend bool operator==(const FPartyPlayer &lhs, const FPartyPlayer &rhs) {
+		return (lhs.PlayerID == rhs.PlayerID);
+	}
 };
+	
+
 
 UCLASS(BlueprintType, Blueprintable)
 class PARTYGAME_API UPartyGameInstance : public UGameInstance
@@ -37,23 +42,15 @@ class PARTYGAME_API UPartyGameInstance : public UGameInstance
 	GENERATED_BODY()
 public:
 	UPROPERTY(EditAnywhere)
-		TArray<APlayerController*> Players;
+		TArray<FPartyPlayer> Players;
 	
 	UPROPERTY(EditAnywhere)
 		TArray<FString> Levels;
-
-	UPROPERTY(EditAnywhere)
-		TArray<FScore> Score;
 	
 	UFUNCTION(BlueprintCallable, Category = "Party Game Instance")
 		bool AddPlayer(int PlayerID);
 
 	UFUNCTION(BlueprintCallable, BlueprintPure, Category = "Party Game Instance")
-		TArray<APlayerController*> GetPlayers();
+		TArray<FPartyPlayer> GetPlayers();
 
-	UFUNCTION(BlueprintCallable, BlueprintPure, Category = "Party Game Instance")
-		TArray<FScore> GetScoreList();
-
-	UFUNCTION(BlueprintCallable, BlueprintPure, Category = "Party Game Instance")
-		int GetScore(int PlayerID);
 };

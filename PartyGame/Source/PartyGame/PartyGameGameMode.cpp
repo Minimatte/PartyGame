@@ -20,12 +20,13 @@ int APartyGameGameMode::GiveScore(int PlayerId)
 	UPartyGameInstance* ginstance = Cast<UPartyGameInstance>(UGameplayStatics::GetGameInstance(GetWorld()));
 	
 
-	for (int i = 0; i < ginstance->Score.Num(); i++) {
+	for (int i = 0; i < ginstance->Players.Num(); i++) {
 
-		if (ginstance->Score[i].Player == PlayerId) {
-			FScore newscore = FScore(ginstance->Score[i].Player, ginstance->Score[i].Score + 1);
+		if (ginstance->Players[i].PlayerID == PlayerId) {
 
-			ginstance->Score[i] = newscore;
+			FPartyPlayer newscore = FPartyPlayer(ginstance->Players[i].PlayerID, ginstance->Players[i].Score + 1);
+
+			ginstance->Players[i] = newscore;
 			GEngine->AddOnScreenDebugMessage(-1, 5, FColor::White, "Added score");
 			return newscore.Score;
 		}
