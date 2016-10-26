@@ -53,4 +53,9 @@ public:
 	UFUNCTION(BlueprintCallable, BlueprintPure, Category = "Party Game Instance")
 		TArray<FPartyPlayer> GetPlayers();
 
+	UFUNCTION(BlueprintCallable, BlueprintPure, Category = "Party Game Instance")
+		FPartyPlayer GetPlayer(int PlayerControllerID);
+
+	UFUNCTION(BlueprintCallable, BlueprintPure, Category = "Party Game Instance")
+		int IndexOfPlayer(int PlayerID);
 };
