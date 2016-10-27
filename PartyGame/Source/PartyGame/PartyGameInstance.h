@@ -41,6 +41,8 @@ class PARTYGAME_API UPartyGameInstance : public UGameInstance
 {
 	GENERATED_BODY()
 public:
+
+
 	UPROPERTY(EditAnywhere)
 		TArray<FPartyPlayer> Players;
 	

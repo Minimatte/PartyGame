@@ -17,13 +17,15 @@ public:
 	
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
+	UPROPERTY(EditAnywhere)
+		float ScoreScreenTime = 5;
 
 	UPROPERTY(EditAnywhere)
 		TArray<APartyPlayerController*> PlayerControllers;
 	// Create a new controller, add it to the list of players.
 
 	UFUNCTION(BlueprintCallable, Category = "GameMode")
-		void CheckLastManStanding();
+		bool CheckLastManStanding();
 
 	UFUNCTION(BlueprintCallable, Category = "GameMode")
 		void NextMap();

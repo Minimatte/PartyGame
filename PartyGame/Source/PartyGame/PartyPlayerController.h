@@ -45,4 +45,6 @@ public:
 	UFUNCTION(BlueprintCallable, Category = "PlayerCharacter")
 		void EnableCharacterMovement();
 
+	UFUNCTION(BlueprintCallable, Category = "PlayerCharacter")
+		void LaunchAndDisableCharacter(FVector direction, float force, bool xyoverride, bool zoverride);
 };

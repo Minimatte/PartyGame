@@ -14,7 +14,7 @@ TArray<AActor*> APartyGameGameMode::GetAllSpawnLocations()
 	return FoundActors;
 }
 
-int APartyGameGameMode::GiveScore(int PlayerId)
+int APartyGameGameMode::GiveScore(int PlayerId) 
 {
 
 	UPartyGameInstance* ginstance = Cast<UPartyGameInstance>(UGameplayStatics::GetGameInstance(GetWorld()));
@@ -27,17 +27,16 @@ int APartyGameGameMode::GiveScore(int PlayerId)
 			FPartyPlayer newscore = FPartyPlayer(ginstance->Players[i].PlayerID, ginstance->Players[i].Score + 1);
 
 			ginstance->Players[i] = newscore;
-			GEngine->AddOnScreenDebugMessage(-1, 5, FColor::White, "Added score");
 			return newscore.Score;
 		}
 	}
 	return -1;
 }
 
-void APartyGameGameMode::CheckLastManStanding()
+bool APartyGameGameMode::CheckLastManStanding()
 {
 	if (GameOver)
-		return;
+		return GameOver;
 
 	TArray<AActor*> FoundActors;
 	UGameplayStatics::GetAllActorsOfClass(GetWorld(), APartyPlayerCharacter::StaticClass(), FoundActors);
@@ -49,7 +48,7 @@ void APartyGameGameMode::CheckLastManStanding()
 		GameOver = true;
 		UGameplayStatics::SetGlobalTimeDilation(GetWorld(), 0.1f);
 		FTimerHandle UnusedHandle;
-		GetWorldTimerManager().SetTimer(UnusedHandle, this, &APartyGameGameMode::NextMap, 0.3f, false);
+		GetWorldTimerManager().SetTimer(UnusedHandle, this, &APartyGameGameMode::NextMap, ScoreScreenTime/10, false);
 		
 		int playerID = UGameplayStatics::GetPlayerControllerID(Cast<APlayerController>(FoundActors[0]->GetInstigatorController()));
 		int newscore = GiveScore(playerID);
@@ -62,6 +61,8 @@ void APartyGameGameMode::CheckLastManStanding()
 		FTimerHandle UnusedHandle;
 		GetWorldTimerManager().SetTimer(UnusedHandle, this, &APartyGameGameMode::NextMap, 0.3f, false);
 	}
+
+	return GameOver;
 
 }
 

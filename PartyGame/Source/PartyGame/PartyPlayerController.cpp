@@ -137,6 +137,16 @@ void APartyPlayerController::EnableCharacterMovement() {
 		ControlledCharacter->CanMove = true;
 }
 
+void APartyPlayerController::LaunchAndDisableCharacter(FVector direction, float force, bool xyoverride, bool zoverride) {
+
+	GetCharacter()->LaunchCharacter(direction * force, xyoverride, zoverride);
+	APartyPlayerCharacter* c = Cast<APartyPlayerCharacter>(GetCharacter());
+	c->DisableMovement();
+	DisableCharacterMovement();
+	FTimerHandle handle;
+	GetWorldTimerManager().SetTimer(handle, c, &APartyPlayerCharacter::EnableMovement, 0.5);
+}
+
 void APartyPlayerController::Push()
 {
 	APartyPlayerCharacter* ControlledCharacter = Cast<APartyPlayerCharacter>(GetPawn());

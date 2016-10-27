@@ -44,7 +44,7 @@ public:
 	UPROPERTY(EditAnywhere)
 		bool CanWallJump;
 
-	UPROPERTY(EditAnywhere)
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 		bool CanMove;
 
 	UPROPERTY(EditAnywhere)
@@ -65,6 +65,7 @@ public:
 	UFUNCTION(BlueprintCallable, Category = "Party Player")
 		void EnableMovement();
 
-	UPROPERTY(EditAnywhere)
+	//If the movement component is enabled
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 		bool MovementEnabled = true;
 };

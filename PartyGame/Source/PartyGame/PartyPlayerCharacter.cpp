@@ -17,8 +17,6 @@ void APartyPlayerCharacter::BeginPlay()
 {
 	Super::BeginPlay();
 
-	CurrentHealth = MaxHealth;
-
 	AutoPossessPlayer = EAutoReceiveInput::Player1;
 	AutoPossessPlayer = EAutoReceiveInput::Player2;
 	AutoPossessPlayer = EAutoReceiveInput::Player3;
@@ -34,7 +32,7 @@ void APartyPlayerCharacter::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
 
-	if (!CanMove && GetMovementComponent()->IsMovingOnGround()) {
+	if (!CanMove && GetMovementComponent()->IsMovingOnGround() && MovementEnabled) {
 		CanMove = true;
 		
 	}
@@ -44,10 +42,14 @@ void APartyPlayerCharacter::Tick(float DeltaTime)
 void APartyPlayerCharacter::TakeDamage(float damage) {
 	CurrentHealth -= damage;
 
+
 	if (CurrentHealth <= 0) {
 		GetController()->UnPossess();
 		Kill();
 	}
+
+	if (CurrentHealth > MaxHealth)
+		CurrentHealth = MaxHealth;
 }
 
 void APartyPlayerCharacter::Heal(float health) {
