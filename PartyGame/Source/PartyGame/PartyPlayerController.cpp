@@ -154,6 +154,9 @@ void APartyPlayerController::Push()
 
 	if (::IsValid(ControlledCharacter) && ControlledCharacter->CanMove) {
 
+		if (!ControlledCharacter->CanPush)
+			return;
+
 		TArray<FHitResult> hits;
 		FVector start = ControlledCharacter->GetActorLocation();
 		FVector end = start + FVector(0, 0, 1);

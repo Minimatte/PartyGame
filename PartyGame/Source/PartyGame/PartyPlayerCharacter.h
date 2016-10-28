@@ -68,4 +68,7 @@ public:
 	//If the movement component is enabled
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 		bool MovementEnabled = true;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+		bool CanPush = false;
 };
