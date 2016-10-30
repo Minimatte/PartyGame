@@ -68,7 +68,8 @@ bool APartyGameGameMode::CheckLastManStanding()
 
 void APartyGameGameMode::NextMap()
 {
-	UGameplayStatics::OpenLevel(GetWorld(), "Level_FallingBalls");
+	UPartyGameInstance *gi = Cast<UPartyGameInstance>(GetGameInstance());
+	UGameplayStatics::OpenLevel(GetWorld(), gi->NextMap);
 }
 
 void APartyGameGameMode::CreatePlayer(APartyPlayerController* playercontroller)
