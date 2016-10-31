@@ -4,6 +4,7 @@
 #include "PartyGameLib.h"
 #include "PartyPlayerCharacter.h"
 #include "PartyPlayerController.h"
+#include "PartyGameInstance.h"
 // Sets default values
 APartyPlayerCharacter::APartyPlayerCharacter()
 {
@@ -22,9 +23,21 @@ void APartyPlayerCharacter::BeginPlay()
 	AutoPossessPlayer = EAutoReceiveInput::Player3;
 	AutoPossessPlayer = EAutoReceiveInput::Player4;
 
+	int id = UGameplayStatics::GetPlayerControllerID(Cast<APlayerController>(GetInstigatorController()));
+	UPartyGameInstance *gi = Cast<UPartyGameInstance>(GetGameInstance());
 	
+	FLinearColor color = UPartyGameLib::GetPlayerColor(gi->IndexOfPlayer(gi->GetPlayer(id).PlayerID));
 	
+	UStaticMeshComponent *c = Cast<UStaticMeshComponent>(GetComponentsByTag(UStaticMeshComponent::StaticClass(), "Mesh")[0]);
+
+	UMaterialInstanceDynamic *DynamicMaterial = UMaterialInstanceDynamic::Create(PlayerMaterial, this);
 	
+	DynamicMaterial->SetVectorParameterValue("Color", color);
+	
+	c->SetMaterial(0, DynamicMaterial);
+
+	GEngine->AddOnScreenDebugMessage(-1, 5, FColor::White, color.ToString());
+
 }
 
 // Called every frame
