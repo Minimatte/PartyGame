@@ -66,6 +66,20 @@ bool APartyGameGameMode::CheckLastManStanding()
 
 }
 
+void APartyGameGameMode::PlayerWin(APlayerController* playerController) {
+	if (GameOver)
+		return;
+
+	GameOver = true;
+	UGameplayStatics::SetGlobalTimeDilation(GetWorld(), 0.1f);
+	FTimerHandle UnusedHandle;
+	GetWorldTimerManager().SetTimer(UnusedHandle, this, &APartyGameGameMode::NextMap, ScoreScreenTime / 10, false);
+
+	int playerID = UGameplayStatics::GetPlayerControllerID(Cast<APlayerController>(playerController));
+	int newscore = GiveScore(playerID);
+	GEngine->AddOnScreenDebugMessage(-1, 5, FColor::White, FString::SanitizeFloat(newscore));
+}
+
 void APartyGameGameMode::NextMap()
 {
 	UPartyGameInstance *gi = Cast<UPartyGameInstance>(GetGameInstance());

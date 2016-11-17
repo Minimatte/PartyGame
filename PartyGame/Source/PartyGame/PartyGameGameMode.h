@@ -22,16 +22,23 @@ public:
 
 	UPROPERTY(EditAnywhere)
 		TArray<APartyPlayerController*> PlayerControllers;
-	// Create a new controller, add it to the list of players.
+	
 
+	//Check for last man standing. Level ends if there is only one player left.
 	UFUNCTION(BlueprintCallable, Category = "GameMode")
 		bool CheckLastManStanding();
 
+	//Manually win the level for a player. WARNING: USE CAREFULLY.
+	UFUNCTION(BlueprintCallable, Category = "GameMode")
+		void PlayerWin(APlayerController *playerController);
+
+	//Move to the next map specified in the game instance.
 	UFUNCTION(BlueprintCallable, Category = "GameMode")
 		void NextMap();
 
+	//Create a new player and add it to the list
 	UFUNCTION(BlueprintCallable, Category = "Gamecontroller")
-	void CreatePlayer(APartyPlayerController* playercontroller);
+		void CreatePlayer(APartyPlayerController* playercontroller);
 
 	UFUNCTION(BlueprintCallable, BlueprintPure, Category = "GameMode")
 		int GetAmountOfPlayers();

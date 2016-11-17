@@ -19,8 +19,6 @@ FColor UPartyGameLib::GetPlayerColor(int id) {
 		return FColor::Purple;
 	case 5:
 		return FColor::White;
-	default:
-		return FColor::Magenta;
 	}
 
 	return FColor::Black;
