@@ -11,6 +11,9 @@ bool UPartyGameInstance::AddPlayer(int PlayerID) {
 	player.PlayerID = PlayerID;
 	player.Score = 0;
 
+	
+	if (!PlayerList.Contains(PlayerList.Num()))
+		PlayerList.Add(PlayerList.Num(), player);
 
 	if (Players.Contains(player)) {
 		Players.Remove(player);

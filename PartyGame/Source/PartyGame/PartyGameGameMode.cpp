@@ -14,11 +14,11 @@ TArray<AActor*> APartyGameGameMode::GetAllSpawnLocations()
 	return FoundActors;
 }
 
-int APartyGameGameMode::GiveScore(int PlayerId) 
+int APartyGameGameMode::GiveScore(int PlayerId)
 {
 
 	UPartyGameInstance* ginstance = Cast<UPartyGameInstance>(UGameplayStatics::GetGameInstance(GetWorld()));
-	
+
 
 	for (int i = 0; i < ginstance->Players.Num(); i++) {
 
@@ -48,8 +48,8 @@ bool APartyGameGameMode::CheckLastManStanding()
 		GameOver = true;
 		UGameplayStatics::SetGlobalTimeDilation(GetWorld(), 0.1f);
 		FTimerHandle UnusedHandle;
-		GetWorldTimerManager().SetTimer(UnusedHandle, this, &APartyGameGameMode::NextMap, ScoreScreenTime/10, false);
-		
+		GetWorldTimerManager().SetTimer(UnusedHandle, this, &APartyGameGameMode::NextMap, ScoreScreenTime / 10, false);
+
 		int playerID = UGameplayStatics::GetPlayerControllerID(Cast<APlayerController>(FoundActors[0]->GetInstigatorController()));
 		int newscore = GiveScore(playerID);
 		GEngine->AddOnScreenDebugMessage(-1, 5, FColor::White, FString::SanitizeFloat(newscore));
@@ -96,7 +96,35 @@ int APartyGameGameMode::GetAmountOfPlayers() {
 	return 0;
 }
 
+int APartyGameGameMode::GetTempScore(AActor * actor)
+{
+	if (!GameModeScore.Contains(actor))
+		GameModeScore.Add(actor, 0);
+	int x(*GameModeScore.Find(actor));
+	return x;
+}
+
+void APartyGameGameMode::AddTempScore(AActor * actor, int v)
+{
+	if (GameModeScore.Contains(actor)) {
+		int x(*GameModeScore.Find(actor));
+		GameModeScore.Emplace(actor, (x + v));
+	}
+	else {
+		GameModeScore.Add(actor, v);
+	}
+}
+
 void APartyGameGameMode::BeginPlay() {
 	Super::BeginPlay();
 	GEngine->AddOnScreenDebugMessage(-1, 5, FColor::Red, TEXT("BEGIN PLAY GAME MODE"));
+	GameModeScore.Empty();
+
+	TArray<AActor*> foundActors;
+	UGameplayStatics::GetAllActorsOfClass(GetWorld(), TSubclassOf<APartyPlayerCharacter>(), foundActors);
+
+	for (int i = 0; i < foundActors.Num(); i++) {
+		GameModeScore.Add(foundActors[i], 0);
+	}
+
 }

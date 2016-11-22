@@ -24,26 +24,27 @@ void APartyPlayerCharacter::BeginPlay()
 	AutoPossessPlayer = EAutoReceiveInput::Player4;
 	int id = UGameplayStatics::GetPlayerControllerID(Cast<APlayerController>(GetInstigatorController()));
 	UPartyGameInstance *gi = Cast<UPartyGameInstance>(GetGameInstance());
-	
-	
+
+
 	if (::IsValid(GetComponentsByTag(UStaticMeshComponent::StaticClass(), "Mesh")[0])) {
 
-	FLinearColor color = UPartyGameLib::GetPlayerColor(gi->IndexOfPlayer(gi->GetPlayer(id).PlayerID));
-	UStaticMeshComponent *c = Cast<UStaticMeshComponent>(GetComponentsByTag(UStaticMeshComponent::StaticClass(), "Mesh")[0]);
+		FLinearColor color = UPartyGameLib::GetPlayerColor(gi->GetPlayer(id).PlayerID);
+		UStaticMeshComponent *c = Cast<UStaticMeshComponent>(GetComponentsByTag(UStaticMeshComponent::StaticClass(), "Mesh")[0]);
 
-	
-	UMaterialInstanceDynamic *DynamicMaterial = UMaterialInstanceDynamic::Create(PlayerMaterial, this);
-	
-	DynamicMaterial->SetVectorParameterValue("Color", color);
-	
-	c->SetMaterial(0, DynamicMaterial);
-	int i = gi->GetPlayer(id).PlayerID;
-	GEngine->AddOnScreenDebugMessage(-1, 5, FColor::White, color.ToString() + " - " + FString::SanitizeFloat(i));
-	} else {
+
+		UMaterialInstanceDynamic *DynamicMaterial = UMaterialInstanceDynamic::Create(PlayerMaterial, this);
+
+		DynamicMaterial->SetVectorParameterValue("Color", color);
+
+		c->SetMaterial(0, DynamicMaterial);
+		int i = gi->GetPlayer(id).PlayerID;
+		GEngine->AddOnScreenDebugMessage(-1, 5, FColor::White, color.ToString() + " - " + FString::SanitizeFloat(i));
+	}
+	else {
 		GEngine->AddOnScreenDebugMessage(-1, 5, FColor::White, "There is no tag Mesh on the player, cant set player color.");
 
 	}
-	
+
 
 }
 
@@ -54,7 +55,7 @@ void APartyPlayerCharacter::Tick(float DeltaTime)
 
 	if (!CanMove && GetMovementComponent()->IsMovingOnGround() && MovementEnabled) {
 		CanMove = true;
-		
+
 	}
 
 }

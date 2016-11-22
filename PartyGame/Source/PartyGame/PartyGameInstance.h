@@ -10,7 +10,7 @@ struct FPartyPlayer
 {
 	GENERATED_USTRUCT_BODY()
 
-	UPROPERTY(EditAnywhere)
+	UPROPERTY(BlueprintReadWrite)
 		int32 PlayerID;
 
 	UPROPERTY(EditAnywhere)
@@ -44,6 +44,9 @@ public:
 
 	UPROPERTY(EditAnywhere)
 		FName NextMap = "Level_Platforms";
+
+	UPROPERTY(EditAnywhere)
+		TMap<int, FPartyPlayer> PlayerList;
 
 	UPROPERTY(EditAnywhere)
 		TArray<FPartyPlayer> Players;

@@ -15,6 +15,15 @@ class PARTYGAME_API APartyGameGameMode : public AGameMode
 
 public:
 	
+	UPROPERTY(EditAnywhere)
+	TMap<AActor*, int> GameModeScore;
+
+	UFUNCTION(BlueprintCallable, BlueprintPure, Category = "Temp game mode score")
+		int GetTempScore(AActor* actor);
+
+	UFUNCTION(BlueprintCallable, Category = "Temp game mode score")
+		void AddTempScore(AActor * actor, int v);
+
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
 	UPROPERTY(EditAnywhere)
