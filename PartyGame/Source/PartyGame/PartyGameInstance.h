@@ -52,8 +52,11 @@ public:
 		TArray<FPartyPlayer> Players;
 	
 	UPROPERTY(EditAnywhere)
-		TArray<FString> Levels;
+		TArray<FName> Levels;
 	
+	UFUNCTION(BlueprintCallable, Category = "Party Game Instance")
+		void SetLevelList(TArray<FName> levelnames);
+
 	UFUNCTION(BlueprintCallable, Category = "Party Game Instance")
 		bool AddPlayer(int PlayerID);
 

@@ -83,6 +83,7 @@ void APartyGameGameMode::PlayerWin(APlayerController* playerController) {
 void APartyGameGameMode::NextMap()
 {
 	UPartyGameInstance *gi = Cast<UPartyGameInstance>(GetGameInstance());
+	gi->NextMap = gi->Levels[FMath::RandRange(0, gi->Levels.Num()-1)];
 	UGameplayStatics::OpenLevel(GetWorld(), gi->NextMap);
 }
 

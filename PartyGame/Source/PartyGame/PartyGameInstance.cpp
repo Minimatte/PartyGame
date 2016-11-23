@@ -3,6 +3,10 @@
 #include "PartyGame.h"
 #include "PartyGameInstance.h"
 
+void UPartyGameInstance::SetLevelList(TArray<FName> levelnames) {
+	Levels = levelnames;
+}
+
 bool UPartyGameInstance::AddPlayer(int PlayerID) {
 	APlayerController* controller = UGameplayStatics::GetPlayerController(GWorld->GetLevel(0), PlayerID);
 
