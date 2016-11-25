@@ -73,11 +73,11 @@ AActor* UPartyGameLib::GetPlayerFurthestTo(EDirectionEnum direction) {
 	return ActorToReturn;
 }
 
-bool UPartyGameLib::IsOnScreen(AActor* Actor, float TimeThreashold) {
+bool UPartyGameLib::IsOnScreen(AActor* Actor, float TimeThreshold) {
 	//Empty any previous entries
 
 	float delta = Actor->GetWorld()->TimeSeconds - Actor->GetLastRenderTime();
-	if (delta < TimeThreashold)
+	if (delta < TimeThreshold)
 		return true;
 	
 	else return false;

@@ -30,7 +30,7 @@ public:
 			static AActor* GetPlayerFurthestTo(EDirectionEnum direction);
 
 		UFUNCTION(BlueprintPure, Category = "GameMode")
-			static bool IsOnScreen(AActor* Actor, float TimeThreashold);
+			static bool IsOnScreen(AActor* Actor, float TimeThreshold);
 
 		UFUNCTION(BlueprintCallable, Category = "Score")
 			static void AddScore(int PlayerId);
