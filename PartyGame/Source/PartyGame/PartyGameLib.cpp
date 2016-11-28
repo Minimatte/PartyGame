@@ -88,3 +88,9 @@ void UPartyGameLib::AddScore(int PlayerId)
 {
 }
 
+void UPartyGameLib::DisableSplitScreen(AActor* Context, bool bDisable) {
+	if (Context) {
+		Context->GetWorld()->GetGameViewport()->SetDisableSplitscreenOverride(bDisable);
+	
+	}
+}

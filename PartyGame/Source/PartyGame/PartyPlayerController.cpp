@@ -8,6 +8,8 @@
 void APartyPlayerController::SetupInputComponent() {
 	Super::SetupInputComponent();
 
+	if (!CustomInput) {
+
 	InputComponent->BindAxis("Up", this, &APartyPlayerController::MoveUp);
 
 
@@ -17,6 +19,7 @@ void APartyPlayerController::SetupInputComponent() {
 	InputComponent->BindAction("Jump", IE_Pressed, this, &APartyPlayerController::PlayerJump);
 	InputComponent->BindAction("Debug", IE_Pressed, this, &APartyPlayerController::Boost);
 	InputComponent->BindAction("Push", IE_Pressed, this, &APartyPlayerController::Push);
+	}
 }
 
 void APartyPlayerController::MoveUp(float Value) {

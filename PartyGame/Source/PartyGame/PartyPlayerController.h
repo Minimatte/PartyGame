@@ -9,12 +9,13 @@
  *
  */
 UCLASS()
-class PARTYGAME_API APartyPlayerController : public APlayerController
-{
+class PARTYGAME_API APartyPlayerController : public APlayerController {
 	GENERATED_BODY()
 
 public:
 
+	UPROPERTY(EditAnywhere)
+		bool CustomInput = false;
 
 	bool Boosting = false;
 	FVector BoostingLocation;

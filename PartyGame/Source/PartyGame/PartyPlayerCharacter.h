@@ -19,6 +19,7 @@ public:
 	UPROPERTY(EditAnywhere)
 		bool CanMoveXAxis = false;
 
+	
 	// Sets default values for this character's properties
 	APartyPlayerCharacter();
 

@@ -34,4 +34,7 @@ public:
 
 		UFUNCTION(BlueprintCallable, Category = "Score")
 			static void AddScore(int PlayerId);
+
+		UFUNCTION(BlueprintCallable, Category = "GameMode")
+			static void DisableSplitScreen(AActor* Context, bool bDisable);
 };
