@@ -54,3 +54,8 @@ void ATurret::EnableTurret() {
 	GetWorldTimerManager().SetTimer(TurretHandle, this, &ATurret::ShootTurret, timer, true);
 	TurretActive = true;
 }
+
+void ATurret::SetProjectile(TSubclassOf<class AActor> newActor)
+{
+	SpawnObject = newActor;
+}

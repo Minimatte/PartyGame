@@ -43,6 +43,9 @@ public:
 
 	UFUNCTION(BlueprintCallable, Category = "Turret")
 		void EnableTurret();
+
+	UFUNCTION(BlueprintCallable, Category = "Turret")
+		void SetProjectile(TSubclassOf<class AActor> newActor);
 private:
 	FTimerHandle TurretHandle;
 };
