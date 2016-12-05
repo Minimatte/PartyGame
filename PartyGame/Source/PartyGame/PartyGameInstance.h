@@ -3,6 +3,7 @@
 #pragma once
 
 #include "Engine/GameInstance.h"
+#include "PartyPlayerController.h"
 #include "PartyGameInstance.generated.h"
 
 USTRUCT(BlueprintType)
@@ -68,4 +69,7 @@ public:
 
 	UFUNCTION(BlueprintCallable, BlueprintPure, Category = "Party Game Instance")
 		int IndexOfPlayer(int PlayerID);
+
+	UFUNCTION(BlueprintCallable, BlueprintPure, Category = "Party Game Instance")
+		FPartyPlayer GetLeadingPlayer();
 };

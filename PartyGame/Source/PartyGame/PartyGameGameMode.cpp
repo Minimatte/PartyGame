@@ -27,6 +27,13 @@ int APartyGameGameMode::GiveScore(int PlayerId)
 			FPartyPlayer newscore = FPartyPlayer(ginstance->Players[i].PlayerID, ginstance->Players[i].Score + 1);
 
 			ginstance->Players[i] = newscore;
+			if (ginstance->GetLeadingPlayer().Score == 2)
+			{
+				GEngine->AddOnScreenDebugMessage(-1, 5, FColor::White, "Win: " + FString::SanitizeFloat(ginstance->GetLeadingPlayer().PlayerID));
+				ginstance->Levels.SetNum(0);
+				return -1;
+			}
+
 			return newscore.Score;
 		}
 	}

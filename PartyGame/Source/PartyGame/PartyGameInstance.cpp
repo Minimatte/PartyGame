@@ -64,3 +64,17 @@ int UPartyGameInstance::IndexOfPlayer(int PlayerID) {
 
 	return id;
 }
+
+FPartyPlayer UPartyGameInstance::GetLeadingPlayer()
+{
+
+	FPartyPlayer leader = Players[0];
+
+	for (int i = 0; i < Players.Num(); i++) {
+		if (Players[i].Score > leader.Score) {
+			leader = Players[i];
+		}
+	}
+	
+	return leader;
+}
