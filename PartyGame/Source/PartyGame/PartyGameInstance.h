@@ -11,7 +11,7 @@ struct FPartyPlayer
 {
 	GENERATED_USTRUCT_BODY()
 
-	UPROPERTY(BlueprintReadWrite)
+		UPROPERTY(BlueprintReadWrite)
 		int32 PlayerID;
 
 	UPROPERTY(EditAnywhere)
@@ -34,7 +34,7 @@ struct FPartyPlayer
 		return (lhs.PlayerID == rhs.PlayerID);
 	}
 };
-	
+
 
 
 UCLASS(BlueprintType, Blueprintable)
@@ -51,10 +51,19 @@ public:
 
 	UPROPERTY(EditAnywhere)
 		TArray<FPartyPlayer> Players;
-	
+
 	UPROPERTY(EditAnywhere)
 		TArray<FName> Levels;
-	
+
+	UPROPERTY(EditAnywhere)
+		int RequiredWins = 1;
+
+	UFUNCTION(BlueprintCallable, BlueprintPure, Category = "Party Game Instance")
+		int GetRequiredWins();
+
+	UFUNCTION(BlueprintCallable, Category = "Party Game Instance")
+		void SetRequiredWins(int wins);
+
 	UFUNCTION(BlueprintCallable, Category = "Party Game Instance")
 		void SetLevelList(TArray<FName> levelnames);
 

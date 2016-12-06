@@ -3,6 +3,16 @@
 #include "PartyGame.h"
 #include "PartyGameInstance.h"
 
+int UPartyGameInstance::GetRequiredWins()
+{
+	return RequiredWins;
+}
+
+void UPartyGameInstance::SetRequiredWins(int wins)
+{
+	RequiredWins = wins;
+}
+
 void UPartyGameInstance::SetLevelList(TArray<FName> levelnames) {
 	Levels = levelnames;
 }
