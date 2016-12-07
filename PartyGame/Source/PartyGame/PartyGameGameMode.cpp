@@ -40,6 +40,14 @@ int APartyGameGameMode::GiveScore(int PlayerId)
 	return -1;
 }
 
+void APartyGameGameMode::EmptyPlayerList()
+{
+	UPartyGameInstance *gi = Cast<UPartyGameInstance>(GetGameInstance());
+	gi->Levels.Empty();
+	gi->PlayerList.Empty();
+	gi->Players.Empty();
+}
+
 bool APartyGameGameMode::CheckLastManStanding()
 {
 	if (GameOver)
@@ -91,11 +99,12 @@ void APartyGameGameMode::NextMap()
 {
 	UPartyGameInstance *gi = Cast<UPartyGameInstance>(GetGameInstance());
 	if (gi->Levels.Num() > 0) {
-	gi->NextMap = gi->Levels[FMath::RandRange(0, gi->Levels.Num()-1)];
-	UGameplayStatics::OpenLevel(GetWorld(), gi->NextMap);
+		gi->NextMap = gi->Levels[FMath::RandRange(0, gi->Levels.Num() - 1)];
+		UGameplayStatics::OpenLevel(GetWorld(), gi->NextMap);
 	}
 	else {
 		UGameplayStatics::OpenLevel(GetWorld(), "StartLevel");
+
 
 	}
 }

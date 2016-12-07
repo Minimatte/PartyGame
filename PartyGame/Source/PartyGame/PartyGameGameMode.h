@@ -57,6 +57,10 @@ public:
 
 	UFUNCTION(BlueprintCallable, Category = "GameMode")
 		int GiveScore(int PlayerId);
+
+	UFUNCTION(BlueprintCallable, Category = "GameMode")
+		void EmptyPlayerList();
+
 private:
 	bool GameOver = false;
 
