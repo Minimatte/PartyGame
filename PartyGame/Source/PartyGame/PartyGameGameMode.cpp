@@ -42,7 +42,7 @@ int APartyGameGameMode::GiveScore(int PlayerId)
 
 void APartyGameGameMode::EmptyPlayerList()
 {
-	UPartyGameInstance *gi = Cast<UPartyGameInstance>(GetGameInstance());
+	UPartyGameInstance *gi = Cast<UPartyGameInstance>(GetGameInstance());	
 	gi->Levels.Empty();
 	gi->PlayerList.Empty();
 	gi->Players.Empty();
