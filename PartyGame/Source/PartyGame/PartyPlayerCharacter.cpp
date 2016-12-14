@@ -38,7 +38,7 @@ void APartyPlayerCharacter::BeginPlay()
 
 		c->SetMaterial(0, DynamicMaterial);
 		int i = gi->GetPlayer(id).PlayerID;
-		GEngine->AddOnScreenDebugMessage(-1, 5, FColor::White, color.ToString() + " - " + FString::SanitizeFloat(i));
+		//GEngine->AddOnScreenDebugMessage(-1, 5, FColor::White, color.ToString() + " - " + FString::SanitizeFloat(i));
 	}
 	else {
 		GEngine->AddOnScreenDebugMessage(-1, 5, FColor::White, "There is no tag Mesh on the player, cant set player color.");

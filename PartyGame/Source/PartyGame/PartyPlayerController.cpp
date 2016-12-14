@@ -10,15 +10,15 @@ void APartyPlayerController::SetupInputComponent() {
 
 	if (!CustomInput) {
 
-	InputComponent->BindAxis("Up", this, &APartyPlayerController::MoveUp);
+		InputComponent->BindAxis("Up", this, &APartyPlayerController::MoveUp);
 
 
-	InputComponent->BindAxis("Right", this, &APartyPlayerController::MoveRight);
-	//InputComponent->BindAxis("RightStickX");
-	//InputComponent->BindAxis("RightStickY");
-	InputComponent->BindAction("Jump", IE_Pressed, this, &APartyPlayerController::PlayerJump);
-	InputComponent->BindAction("Debug", IE_Pressed, this, &APartyPlayerController::Boost);
-	InputComponent->BindAction("Push", IE_Pressed, this, &APartyPlayerController::Push);
+		InputComponent->BindAxis("Right", this, &APartyPlayerController::MoveRight);
+		//InputComponent->BindAxis("RightStickX");
+		//InputComponent->BindAxis("RightStickY");
+		InputComponent->BindAction("Jump", IE_Pressed, this, &APartyPlayerController::PlayerJump);
+		InputComponent->BindAction("Debug", IE_Pressed, this, &APartyPlayerController::Boost);
+		InputComponent->BindAction("Push", IE_Pressed, this, &APartyPlayerController::Push);
 	}
 }
 
