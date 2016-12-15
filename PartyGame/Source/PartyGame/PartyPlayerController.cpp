@@ -58,9 +58,9 @@ void APartyPlayerController::MoveRight(float Value) {
 		const FRotator Rotation = GetControlRotation();
 		const FVector Direction = FRotationMatrix(Rotation).GetScaledAxis(EAxis::Y);
 		// add movement in that direction
-
+		FRotator Rot = FRotationMatrix::MakeFromX(Direction).Rotator();
 		GetPawn()->AddMovementInput(Direction, Value);
-
+		
 	}
 }
 
@@ -96,8 +96,8 @@ void APartyPlayerController::PlayerJump() {
 			FHitResult resultRight;
 			FHitResult resultLeft;
 			FVector start = GetCharacter()->GetActorLocation();
-			FVector end = start + GetCharacter()->GetActorRightVector() * 50;
-			FVector leftEnd = start + GetCharacter()->GetActorRightVector() * 50 * -1;
+			FVector end = start + GetCharacter()->GetActorForwardVector() * 50;
+			FVector leftEnd = start + GetCharacter()->GetActorForwardVector() * 50 * -1;
 
 			FCollisionQueryParams CollisionParams;
 			CollisionParams.AddIgnoredActor(GetCharacter());
@@ -120,7 +120,7 @@ void APartyPlayerController::PlayerJump() {
 			}
 
 			if (direction != 0) {
-				FVector newVelocity = -GetCharacter()->GetActorRightVector() * 500 * direction + GetCharacter()->GetActorUpVector() * 500;
+				FVector newVelocity = -GetCharacter()->GetActorForwardVector() * 500 * direction + GetCharacter()->GetActorUpVector() * 500;
 				GetCharacter()->LaunchCharacter(newVelocity, true, true);
 				ControlledCharacter->CanMove = false;
 			}

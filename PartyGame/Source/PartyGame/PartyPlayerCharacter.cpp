@@ -24,12 +24,12 @@ void APartyPlayerCharacter::BeginPlay()
 	AutoPossessPlayer = EAutoReceiveInput::Player4;
 	int id = UGameplayStatics::GetPlayerControllerID(Cast<APlayerController>(GetInstigatorController()));
 	UPartyGameInstance *gi = Cast<UPartyGameInstance>(GetGameInstance());
+	
 
-
-	if (::IsValid(GetComponentsByTag(UStaticMeshComponent::StaticClass(), "Mesh")[0])) {
+	if (::IsValid(GetComponentsByTag(UMeshComponent::StaticClass(), "Mesh")[0])) {
 
 		FLinearColor color = UPartyGameLib::GetPlayerColor(gi->GetPlayer(id).PlayerID);
-		UStaticMeshComponent *c = Cast<UStaticMeshComponent>(GetComponentsByTag(UStaticMeshComponent::StaticClass(), "Mesh")[0]);
+		UMeshComponent *c = Cast<UMeshComponent>(GetComponentsByTag(UMeshComponent::StaticClass(), "Mesh")[0]);
 
 
 		UMaterialInstanceDynamic *DynamicMaterial = UMaterialInstanceDynamic::Create(PlayerMaterial, this);
